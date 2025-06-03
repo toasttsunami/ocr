@@ -1,0 +1,75 @@
+      /* Custom styles */
+      #imageViewport {
+        width: 100%;
+        height: calc(100vh - 160px); /* Adjust based on header/footer height */
+        overflow: auto;
+        border: 1px solid #ccc;
+        position: relative; /* For SVG overlay positioning */
+        background-color: #f0f0f0; /* Placeholder background */
+      }
+      #imageContainer {
+        position: relative; /* To ensure SVG overlay aligns correctly */
+        transform-origin: top left;
+        cursor: crosshair; /* Default cursor for drawing */
+      }
+      #imageDisplay {
+        display: block; /* Removes extra space below image */
+        max-width: none; /* Allow image to be its original size for zooming */
+      }
+      #svgOverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* Will be set by JS */
+        height: 100%; /* Will be set by JS */
+        pointer-events: auto; /* Initially allow SVG to capture events */
+      }
+      .vertex-handle {
+        fill: rgba(255, 0, 0, 0.7);
+        stroke: #ff0000;
+        stroke-width: 1;
+        cursor: move;
+        pointer-events: all !important; /* Ensure handles are always interactive */
+      }
+      .bounding-box-polygon {
+        fill: rgba(0, 128, 255, 0.2);
+        stroke: rgba(0, 128, 255, 0.8);
+        stroke-width: 1.5; /* Scaled by zoom, adjust if needed */
+        cursor: pointer;
+      }
+      .bounding-box-polygon.selected {
+        stroke: rgba(255, 165, 0, 1);
+        stroke-width: 2.5;
+      }
+      .bounding-box-text {
+        font-size: 10px; /* Base size, will appear larger/smaller with zoom */
+        fill: #000000;
+        paint-order: stroke;
+        stroke: #ffffff;
+        stroke-width: 2px;
+        stroke-linecap: butt;
+        stroke-linejoin: miter;
+        font-weight: bold;
+        pointer-events: none; /* Text should not block clicks on polygon */
+        text-anchor: middle; /* Center text on the average X of the box */
+      }
+      .new-box-line,
+      .new-box-rect {
+        /* Combined style for new box elements */
+        stroke: rgba(0, 255, 0, 0.7);
+        stroke-width: 1.5;
+        stroke-dasharray: 4, 2;
+        fill: none; /* Important for rect preview */
+      }
+      .hidden {
+        display: none;
+      }
+      /* Ensure tooltips or small popups appear above other elements */
+      .tooltip-text-input {
+        position: absolute;
+        z-index: 100;
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      }
